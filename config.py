@@ -1,5 +1,3 @@
-TELEGRAM_TOKEN = 'a1b2c3d4e5f6'
-TELEGRAM_ID = 123456789
 """
 
 Copyright 2024 Anton Kuzmin (https://github.com/antonkuzmn1)
@@ -18,3 +16,5 @@ limitations under the License.
 
 """
 
+TELEGRAM_TOKEN: str = 'a1b2c3d4e5f6'
+TELEGRAM_ID: int = 123456789

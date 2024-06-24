@@ -17,22 +17,32 @@ limitations under the License.
 """
 
 from telegram import Update
+from telegram.constants import ParseMode
 from telegram.ext import ContextTypes
+
+from config import TELEGRAM_ID
 
 
 class ServiceBusinessMessage:
-
     _UPDATE: Update = None
     _CONTEXT: [ContextTypes, any] = None
-
     _ID: int = None
     _TEXT: str = None
 
     def __init__(self, update: Update, context: [ContextTypes, any]) -> None:
         self._UPDATE = update
         self._CONTEXT = context
-
         self._ID = update.business_message.from_user.id
         self._TEXT = update.business_message.text
 
+    async def entry(self) -> None:
         print(f'business: message: {self._ID}: {self._TEXT}')
+        if self._ID == TELEGRAM_ID:
+            return
+
+        await self.repeat()
+
+    async def repeat(self) -> None:
+        text = f'```\n{self._TEXT}```'
+        parse_mode = ParseMode.MARKDOWN
+        await self._UPDATE.business_message.reply_text(text, parse_mode)

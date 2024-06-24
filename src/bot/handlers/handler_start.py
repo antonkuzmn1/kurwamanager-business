@@ -27,6 +27,7 @@ from src.bot.services.bot.service_bot_start import ServiceBotStart
 
 async def handler_start(update: Update, context: [ContextTypes, any]) -> Coroutine[Any, Any, RT]:
 
-    ServiceBotStart(update, context)
+    if update.message.text == '/start':
+        await ServiceBotStart(update, context).entry()
 
     return Coroutine[Any, Any, RT]

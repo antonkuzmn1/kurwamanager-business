@@ -29,9 +29,9 @@ from src.bot.services.business.service_business_message import ServiceBusinessMe
 async def handler_message(update: Update, context: [ContextTypes, any]) -> Coroutine[Any, Any, RT]:
 
     if update.business_message is not None:
-        ServiceBusinessMessage(update, context)
+        await ServiceBusinessMessage(update, context).entry()
 
     if update.message is not None:
-        ServiceBotMessage(update, context)
+        await ServiceBotMessage(update, context).entry()
 
     return Coroutine[Any, Any, RT]

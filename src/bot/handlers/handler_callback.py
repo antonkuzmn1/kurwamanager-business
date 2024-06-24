@@ -27,6 +27,7 @@ from src.bot.services.bot.service_bot_callback import ServiceBotCallback
 
 async def handler_callback(update: Update, context: [ContextTypes, any]) -> Coroutine[Any, Any, RT]:
 
-    ServiceBotCallback(update, context)
+    if update.callback_query is not None:
+        await ServiceBotCallback(update, context).entry()
 
     return Coroutine[Any, Any, RT]
